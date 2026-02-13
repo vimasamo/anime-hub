@@ -1,0 +1,6 @@
+{
+    "appId": "com.victor.animehub",
+    "appName": "Anime Hub",
+    "webDir": "www",
+    "bundledWebRuntime": false
+}

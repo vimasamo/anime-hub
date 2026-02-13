@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIME HUB - Sin Publicidad</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <header>
+        <div class="container">
+            <a href="#" class="logo-link" onclick="resetToHome(event)">
+                <h1 class="logo">ANIME<span> HUB</span></h1>
+            </a>
+            <div class="filters">
+                <select id="genreSelect">
+                    <option value="">Género</option>
+                </select>
+                <select id="yearSelect">
+                    <option value="">Año</option>
+                </select>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar anime...">
+                <button id="searchBtn">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="dashboard" class="dashboard">
+            <div class="carousel-section">
+                <div class="section-header">
+                    <h3>Últimos Actualizados</h3>
+                    <div class="carousel-controls">
+                        <button onclick="scrollCarousel('latestEpisodes', -1)">❮</button>
+                        <button onclick="scrollCarousel('latestEpisodes', 1)">❯</button>
+                    </div>
+                </div>
+                <div id="latestEpisodes" class="carousel"></div>
+            </div>
+
+            <div class="carousel-section">
+                <div class="section-header">
+                    <h3>Próximos Episodios (En Emisión)</h3>
+                    <div class="carousel-controls">
+                        <button onclick="scrollCarousel('onAirList', -1)">❮</button>
+                        <button onclick="scrollCarousel('onAirList', 1)">❯</button>
+                    </div>
+                </div>
+                <div id="onAirList" class="carousel"></div>
+            </div>
+        </section>
+
+        <section id="resultsSection" class="grid hidden"></section>
+
+        <section id="animeDetail" class="hidden">
+            <button class="back-btn" onclick="showResults()">← Volver</button>
+            <div class="detail-header">
+                <img id="detailPoster" src="" alt="Poster">
+                <div class="info">
+                    <h2 id="detailTitle"></h2>
+                    <p id="detailSynopsis"></p>
+                </div>
+            </div>
+            <h3>Episodios</h3>
+            <div id="episodeList" class="episode-grid"></div>
+        </section>
+
+        <section id="playerSection" class="hidden">
+            <button class="back-btn" onclick="showDetail()">← Volver al Anime</button>
+            <h2 id="playingTitle"></h2>
+            <div class="video-container">
+                <div class="video-overlay" id="videoOverlay">
+                    <div class="server-selector">
+                        <label>Servidor:</label>
+                        <select id="serverSelect"></select>
+                    </div>
+                </div>
+                <div class="click-shield" id="clickShield"
+                    title="Capturando publicidad... Haz click una vez para activar el reproductor"></div>
+                <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
