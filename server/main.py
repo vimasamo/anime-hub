@@ -72,19 +72,25 @@ else:
     base_dir = os.path.dirname(os.path.dirname(__file__))
 
 frontend_path = os.path.join(base_dir, "frontend")
-app.mount("/frontend", StaticFiles(directory=frontend_path), name="frontend")
 
-@app.get("/")
-async def read_index():
-    return FileResponse(os.path.join(frontend_path, "index.html"))
+if os.path.exists(frontend_path):
+    app.mount("/frontend", StaticFiles(directory=frontend_path), name="frontend")
 
-# Fallback for other files to be served relatively
-@app.get("/{file_path:path}")
-async def serve_static(file_path: str):
-    full_path = os.path.join(frontend_path, file_path)
-    if os.path.isfile(full_path):
-        return FileResponse(full_path)
-    return FileResponse(os.path.join(frontend_path, "index.html"))
+    @app.get("/")
+    async def read_index():
+        return FileResponse(os.path.join(frontend_path, "index.html"))
+
+    # Fallback for other files to be served relatively
+    @app.get("/{file_path:path}")
+    async def serve_static(file_path: str):
+        full_path = os.path.join(frontend_path, file_path)
+        if os.path.isfile(full_path):
+            return FileResponse(full_path)
+        return FileResponse(os.path.join(frontend_path, "index.html"))
+else:
+    @app.get("/")
+    async def read_root():
+        return {"status": "Anime Hub API is running", "message": "Frontend not found locally, serving API only."}
 
 if __name__ == "__main__":
     import uvicorn
