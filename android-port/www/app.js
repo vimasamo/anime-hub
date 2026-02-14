@@ -1,5 +1,4 @@
-// TODO: Update this URL once your backend is deployed (e.g. to Koyeb or Render)
-const API_URL = 'https://TU-APP-EN-KOYEB.koyeb.app/api';
+const API_URL = 'https://latin-marlane-privado-42af8e44.koyeb.app/api';
 let currentAnime = null;
 
 // Selectors

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Anime Hub</string>
+    <string name="title_activity_main">Anime Hub</string>
+    <string name="package_name">com.victor.animehub</string>
+    <string name="custom_url_scheme">com.victor.animehub</string>
+</resources>
