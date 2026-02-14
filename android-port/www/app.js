@@ -233,6 +233,38 @@ function goBack() {
     }
 }
 
+async function handleCast() {
+    try {
+        const videoSrc = document.getElementById('videoPlayer').src;
+        if (!videoSrc) {
+            alert("No hay un video cargando para transmitir.");
+            return;
+        }
+
+        // Import Native Share if available (Android/iOS only)
+        if (window.Capacitor && window.Capacitor.Plugins.Share) {
+            await window.Capacitor.Plugins.Share.share({
+                title: 'Transmitir Anime',
+                text: 'Reproduciendo: ' + document.getElementById('playingTitle').innerText,
+                url: videoSrc,
+                dialogTitle: 'Compartir/Transmitir a Xbox/TV',
+            });
+        } else {
+            // Fallback for browser
+            await navigator.share({
+                title: 'Transmitir Anime',
+                text: 'Reproduciendo: ' + document.getElementById('playingTitle').innerText,
+                url: videoSrc
+            });
+        }
+    } catch (e) {
+        if (e.name !== 'AbortError') {
+            console.error("Error al compartir", e);
+            alert("Para transmitir, abre esta opción en el menú de compartir de tu tablet.");
+        }
+    }
+}
+
 function showDashboard() {
     dashboard.classList.remove('hidden');
     resultsSection.classList.add('hidden');

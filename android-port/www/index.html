@@ -71,7 +71,10 @@
         </section>
 
         <section id="playerSection" class="hidden">
-            <button class="back-btn" onclick="showDetail()">← Volver al Anime</button>
+            <div class="player-controls-top">
+                <button class="back-btn" onclick="showDetail()">← Volver al Anime</button>
+                <button class="cast-btn" onclick="handleCast()" title="Transmitir a Xbox/TV">📺 Cast</button>
+            </div>
             <h2 id="playingTitle"></h2>
             <div class="video-container">
                 <div class="video-overlay" id="videoOverlay">
